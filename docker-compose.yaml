@@ -1,0 +1,15 @@
+ services:
+  develop:
+    build: ./client
+    image: maxsloof/basedlibrarian-client
+    tty: true
+    volumes:
+      - ./client/code:/app/code
+      - ./books:/app/books
+      - ./client/db:/db
+      # - ./models:/app/models
+    command: python code/main.py
+    env_file:
+      - .env
+    ports:
+      - "7860:7860"
