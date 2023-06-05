@@ -1,45 +1,38 @@
 # BasedLibrarian
 
-A little tool that lets you ask questions from your pdfs, epubs, text files and word documents. Think Chatpdf.com or Box AI. 
+A little tool that lets you ask questions from your pdfs, epubs, text files and word documents. 
 
 Available as a notebook that launches a simple web app with a UI. Uses `langchain` and `gradio` for much of the heavy lifting. 
 
-![enter image description here](https://raw.githubusercontent.com/team-watchdog/BasedLibrarian/main/borges.png)
-
-
-
-
 # How to use
 
-Grab `BasedLibrarian-OpenAI.ipynb` . Save it anywhere and create a folder named `books` - that's where you should put your files. [*] BasedLibrarian can currently take PDF, DOC, DOCX, TXT, MD and EPUB. 
+Put your documents in the 'docs/' folder
 
- You'll need an OpenAI API key. In the .ipynb notebook, you'll see `OPENAI_API_KEY = "your openai api key goes here"` - that's where the key goes. 
+Create a '.env' file based on '.env-empty' 
 
-Once the key is in, run each section of the notebook.  The last section will open up an interface at the bottom. You can either open the UI in a separate browser tab, or use it directly in the notebook.
+Add your GCP credentials JSON to the './client' folder and reference the file in the .env file. 
 
-BasedLibrarian will read your documents and generate embeddings for them. It will then use these embeddings to search for information relevant to your question, and pass this information to OpenAI to generate the response you see. If you add new documents while the program is running, hit the `Scan the library again` button.
-
-
-Here's a diagram,
-
-```mermaid
-graph LR
-A[You] --your question---> B(Embedded text ie: the BasedLibrarian)
-B --relevant text--> D{OpenAI}
-A --your question--> D
-D --the response--> A
-
+Run the Docker Compose file using 
+```bash
+docker compose up
 ```
 
-I built this to explore langchain, so the current version may have a few unresolved dependencies (small fixes). Please note that because of how it does search, it's limited to direct and detailed questions; generic questions won't be of much use, and it won't act like a chatbot. 
+Go to 'http://localhost:7860'. 
 
-![enter image description here](https://raw.githubusercontent.com/team-watchdog/BasedLibrarian/main/Screenshot%20from%202023-05-18%2014-20-14.png)
+Press 'Hard re-scan' when first deploying the container. 
 
+BasedLibrarian will read your documents and generate embeddings for them. It will then use these embeddings to search for information relevant to your question, and pass this information to OpenAI to generate the response you see. If you add new documents while the program is running, hit the `Scan the library again` button. 
 
-[*] if you're running in a Google Collab, you can replace /books with a Drive folder of your choice. 
+# Limitations and known bugs
 
+Please note that because of how it does search, it's limited to direct and detailed questions; generic questions won't be of much use, and it won't act like a chatbot. 
 
+Known issues:
+- Container needs to be restarted after scanning newly added documents
+- No input documents are provided to the LLM for inference. (Workaround: Press 'Hard re-scan')
 
-
-
-
+# Future roadmap 
+1. Add more Cloud providers
+2. Add self-hosted options (see BasedLibrarian-server)
+3. Add chat history to web-ui
+4. Asynchronous function to 

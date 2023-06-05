@@ -1,3 +1,4 @@
 client/.chroma/
+db/
 books_all/
-client/db
+.vscode
