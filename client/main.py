@@ -2,7 +2,8 @@ import gradio as gr
 import time
 
 from langchain.vectorstores import Chroma
-from providers import Providers
+from providers.llm_provider import LLMProvider
+from providers.embedding_model_provider import EmbeddingModelProvider
 from langchain.chains.qa_with_sources import load_qa_with_sources_chain
 
 import vector_db
@@ -13,16 +14,15 @@ import file_loader
 DOC_DIR = "./books/"
 
 # Dynamically select provider
-providers = Providers()
+llm = LLMProvider().provider
+
+embedding_model = EmbeddingModelProvider().provider
 
 # Vector db
 db = Chroma(
-    embedding_function=providers.Embeddings_provider(), 
+    embedding_function=embedding_model, 
     client_settings=vector_db.CHROMA_SETTINGS
     ) # type: ignore
-
-# Google Cloud API
-llm = VertexAI(temperature=0, max_output_tokens=256)
 
 # Langchain
 chain = load_qa_with_sources_chain(
@@ -45,7 +45,7 @@ def embed_docs(progress=gr.Progress()):
 
     if texts is not None:
         progress(0.5, desc="Embedding documents ...")
-        embeddings = providers.Embeddings_provider()
+        embeddings = embedding_model
         db.add_documents(
             texts, 
             embedding=embeddings, 
@@ -69,7 +69,7 @@ def hard_embed_docs(progress=gr.Progress()):
     vector_db.delete_database()
 
     db = Chroma(
-        embedding_function=providers.Embeddings_provider(),
+        embedding_function=embedding_model,
         client_settings=vector_db.CHROMA_SETTINGS
         )
 

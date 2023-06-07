@@ -6,3 +6,5 @@ unstructured-inference==0.4.4
 pypdf
 google-cloud-aiplatform
 tabulate
+pyyaml
+openai

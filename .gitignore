@@ -2,3 +2,4 @@ client/.chroma/
 db/
 books_all/
 .vscode
+.env
