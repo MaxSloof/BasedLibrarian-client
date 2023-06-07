@@ -1,5 +1,5 @@
  services:
-  develop:
+  client:
     build: .
     image: maxsloof/basedlibrarian-client
     tty: true
