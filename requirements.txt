@@ -8,3 +8,5 @@ google-cloud-aiplatform
 tabulate
 pyyaml
 openai
+coverage
+unittest

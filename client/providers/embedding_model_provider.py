@@ -12,7 +12,7 @@ class EmbeddingModelProvider():
 
     @staticmethod
     def _retrieve_config() -> dict:
-        _config = './client/configuration.yaml'
+        _config = './configuration.yaml'
 
         try:
             with open(_config) as f:
@@ -27,9 +27,9 @@ class EmbeddingModelProvider():
                 
         # Set LLM Provider
         if env_provider == ProviderOptions.BasedLibrarianServer.value:
-            raise NotImplementedError
+            raise NotImplementedError()
         elif env_provider == ProviderOptions.LlamaCPP.value:
-            raise NotImplementedError
+            raise NotImplementedError()
         elif env_provider == ProviderOptions.VertexAI.value:
             provider = VertexAIEmbeddings(**self.config)
         elif env_provider == ProviderOptions.OpenAI.value:

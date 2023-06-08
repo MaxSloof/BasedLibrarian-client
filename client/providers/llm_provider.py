@@ -11,7 +11,7 @@ class LLMProvider():
 
     @staticmethod
     def _retrieve_config() -> dict:
-        _config = './client/configuration.yaml'
+        _config = './configuration.yaml'
 
         try:
             with open(_config) as f:
