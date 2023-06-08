@@ -1,0 +1,19 @@
+generative_model:
+    provider: VertexAI
+    temperature: 0
+    
+    ### OpenAI-specific
+    # model:
+
+    ### VertexAI-specific
+    max_output_tokens: 256
+
+
+embedding_model:
+    provider: VertexAI
+
+    ### OpenAI-specific
+    # model:
+
+    ### VertexAI-specific
+    

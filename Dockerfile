@@ -10,4 +10,4 @@ COPY requirements.txt ./
 # Install pip requirements
 RUN pip install -r requirements.txt
 
-COPY ./client ./code
+COPY ./client ./client

@@ -8,9 +8,9 @@ Available as a notebook that launches a simple web app with a UI. Uses `langchai
 
 Put your documents in the 'docs/' folder
 
-Create a '.env' file based on '.env-empty' 
+Create a 'configuration.yaml' file based on 'sample-configuration.yaml' 
 
-Add your GCP credentials JSON to the './client' folder and reference the file in the .env file. 
+Add your GCP credentials JSON to the './client' folder and reference the file location in the configuration file. 
 
 Run the Docker Compose file using 
 ```bash
